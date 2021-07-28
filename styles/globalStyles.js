@@ -16,6 +16,9 @@ body {
   &.black {
     background: ${({ theme }) => theme.color.black}
   }
+  &.white {
+    background: ${({ theme }) => theme.color.white}
+  }
 }
 
 header {
@@ -157,6 +160,10 @@ line-height: ${({ theme }) => theme.lineHeight.body};
   display: none;
 }
 
+#input-hidden:checked + #input-redesign {
+  background-color: ${({ theme }) => theme.color.black};
+
+}
 `
 
 export default GlobalStyle

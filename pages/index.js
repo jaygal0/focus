@@ -13,6 +13,7 @@ export default function Home({ data }) {
   // To add a class to the body in Nextjs
   useEffect(() => {
     document.querySelector('body').classList.add('black')
+    document.querySelector('body').classList.remove('white')
   })
 
   return (

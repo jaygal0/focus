@@ -1,9 +1,15 @@
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Card from '../components/Card'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
 
 export default function List({ data }) {
+  // To add a class to the body in Nextjs
+  useEffect(() => {
+    document.querySelector('body').classList.add('white')
+    document.querySelector('body').classList.remove('black')
+  })
   const router = useRouter()
   const deleteTask = async (e) => {
     const task = e.target.id

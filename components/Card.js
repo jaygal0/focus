@@ -65,13 +65,31 @@ const InputRedesign = styled.div`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all ease 0.9s;
 
-  &:after {
-    content: '\2714'
+  &.checkmark {
+    &:after {
+      content: '';
+      background-image: url('check-white.svg');
+      background-size: 32px 32px;
+      height: 32px;
+      width: 32px;
+    }
+  }
+
+  &:hover {
+    &:after {
+      content: '';
+      background-image: url('check.svg');
+      background-size: 32px 32px;
+      height: 32px;
+      width: 32px;
+    }
   }
 `
 
 const Card = ({ id, title, desc, date }) => {
+  const [checkmark, setCheckmark] = useState(false)
   const router = useRouter()
   const handleDelete = async () => {
     try {
@@ -90,6 +108,7 @@ const Card = ({ id, title, desc, date }) => {
   }
 
   const checked = async () => {
+    setCheckmark(!checkmark)
     setTimeout(async function () {
       try {
         const deleted = await fetch(`http://localhost:3000/api/todos/${id}`, {
@@ -104,15 +123,23 @@ const Card = ({ id, title, desc, date }) => {
       } catch (error) {
         console.log(error)
       }
-    }, 2000)
+    }, 1000)
   }
 
   return (
     <CardWrapper id="card">
       <ContentWrapper>
         <CheckboxWrapper>
-          <InputHidden type="checkbox" onClick={() => checked()} />
-          <InputRedesign />
+          <InputHidden
+            id="input-hidden"
+            type="checkbox"
+            checked={checkmark && true}
+          />
+          <InputRedesign
+            id="input-redesign"
+            onClick={() => checked()}
+            className={checkmark && 'checkmark'}
+          ></InputRedesign>
         </CheckboxWrapper>
         <TextWrapper>
           <Header>{title}</Header>
