@@ -1,30 +1,34 @@
-import Link from 'next/link'
-import { useEffect } from 'react'
-import styled from 'styled-components'
+import { useRouter } from 'next/router'
 import Card from '../components/Card'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
-import Quote from '../components/Quote'
 
-const Wrapper = styled.div`
-  width: 100%;
-`
-export default function Home({ data }) {
-  // To add a class to the body in Nextjs
-  useEffect(() => {
-    document.querySelector('body').classList.add('black')
-  })
+export default function List({ data }) {
+  const router = useRouter()
+  const deleteTask = async (e) => {
+    const task = e.target.id
+
+    try {
+      const deleted = await fetch(`http://localhost:3000/api/todos/${task}`, {
+        method: 'DELETE',
+      })
+
+      router.push('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
-      <Meta title="OneTask" desc="this is a test" />
-      <Header whiteText />
+      <Meta />
+      <Header homeBtn />
       <main>
         {data.data.length === 0 ? (
           <h2>add a new task</h2>
         ) : (
-          <Wrapper>
-            {data.data.slice(0, 1).map((item) => {
+          <div>
+            {data.data.map((item) => {
               const { completed, _id, title, desc, date } = item
               return (
                 <Card
@@ -36,10 +40,8 @@ export default function Home({ data }) {
                 />
               )
             })}
-          </Wrapper>
+          </div>
         )}
-
-        <Quote msg="this is a quote" />
       </main>
       <footer></footer>
     </>

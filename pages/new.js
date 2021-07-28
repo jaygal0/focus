@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Meta from '../components/Meta'
+import Header from '../components/Header'
 
 export default function New() {
   const [form, setForm] = useState({ title: '', desc: '' })
@@ -16,7 +18,7 @@ export default function New() {
         },
         body: JSON.stringify(form),
       })
-      router.push('/')
+      router.push('/list')
     } catch (error) {
       console.log(error)
     }
@@ -35,9 +37,10 @@ export default function New() {
   }
 
   return (
-    <div>
-      <h1>New page</h1>
-      <form onSubmit={handleSubmit}>
+    <>
+      <Meta />
+      <Header backBtn addTask />
+      <form id="taskForm" onSubmit={handleSubmit}>
         <label htmlFor="title">title</label>
         <input
           type="text"
@@ -52,11 +55,7 @@ export default function New() {
           placeholder="Enter description"
           onChange={handleChange}
         />
-        <button>submit</button>
       </form>
-      <Link href="/">
-        <button>back</button>
-      </Link>
-    </div>
+    </>
   )
 }

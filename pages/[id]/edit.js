@@ -1,6 +1,8 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import Meta from '../../components/Meta'
+import Header from '../../components/Header'
 
 export default function Edit({ data }) {
   const { _id, title, desc, date, completed } = data.data
@@ -9,18 +11,15 @@ export default function Edit({ data }) {
 
   const updateNote = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/todos/${router.query.id}`,
-        {
-          method: 'PUT',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(form),
-        }
-      )
-      router.push('/')
+      const res = await fetch(`http://localhost:3000/api/todos/${_id}`, {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+      router.push('/list')
     } catch (error) {
       console.log(error)
     }
@@ -39,9 +38,10 @@ export default function Edit({ data }) {
   }
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <form onSubmit={handleSubmit}>
+    <>
+      <Meta />
+      <Header backBtn updateBtn />
+      {/* <form onSubmit={handleSubmit}>
         <label htmlFor="title">title</label>
         <input
           type="text"
@@ -62,8 +62,27 @@ export default function Edit({ data }) {
       </form>
       <Link href={`/${_id}`}>
         <button>back</button>
-      </Link>
-    </div>
+      </Link> */}
+
+      <form id="taskFormEdit" onSubmit={handleSubmit}>
+        <label htmlFor="title">title</label>
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter task"
+          onChange={handleChange}
+          value={form.title}
+        />
+        <label htmlFor="desc">description</label>
+        <input
+          type="text"
+          name="desc"
+          placeholder="Enter description"
+          onChange={handleChange}
+          value={form.desc}
+        />
+      </form>
+    </>
   )
 }
 

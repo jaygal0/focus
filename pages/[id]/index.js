@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Meta from '../../components/Meta'
+import Header from '../../components/Header'
+import Card from '../../components/Card'
 
 export default function Task({ data }) {
   const router = useRouter()
@@ -19,7 +22,7 @@ export default function Task({ data }) {
 
   const { _id, title, desc, date, completed } = data.data
   return (
-    <div>
+    <>
       <h1>Task: {title} </h1>
       <p>{desc}</p>
       <p>{completed ? `Completed: Yes` : `Complete: No`}</p>
@@ -31,13 +34,26 @@ export default function Task({ data }) {
       <Link href={`/${_id}/edit`}>
         <button>edit</button>
       </Link>
-    </div>
+
+      <Meta />
+      <Header />
+      <main>
+        <Card title={title} desc={desc} date={date} />
+      </main>
+      <footer></footer>
+    </>
   )
 }
 
 export async function getServerSideProps({ query: { id } }) {
   const res = await fetch(`http://localhost:3000/api/todos/${id}`)
   const data = await res.json()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: { data },
