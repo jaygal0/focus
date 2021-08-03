@@ -26,7 +26,6 @@ header {
   margin: 0 auto;
   margin-top: 28vh;
   margin-bottom: 3.2rem;
-
 }
 main {
   max-width: 92.8rem;
@@ -100,7 +99,12 @@ button {
   border: none;
 
   &.white-text {
-    color: ${({ theme }) => theme.color.white}
+    color: ${({ theme }) => theme.color.white};
+    opacity: .3;
+    transition: all ease-in .3s;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &:hover {
@@ -118,15 +122,12 @@ a {
 }
 
 input {
-  font-size: ${({ theme }) => theme.font.desktop.p};
-  border-radius: 3.2rem;
   outline:none;
   border: none;
-  padding: .8rem 2.4rem;
   width: 100%;
 ::-webkit-input-placeholder {
-  color: black;
-  opacity: .7;
+  color: ${({ theme }) => theme.color.grey};
+  opacity: .1;
   }
 }
 
@@ -163,6 +164,9 @@ line-height: ${({ theme }) => theme.lineHeight.body};
 #input-hidden:checked + #input-redesign {
   background-color: ${({ theme }) => theme.color.black};
 
+}
+.logo-opacity {
+  opacity: .2;
 }
 `
 

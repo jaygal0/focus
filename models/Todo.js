@@ -6,7 +6,7 @@ const TodoSchema = new mongoose.Schema({
     required: [true, 'Please add a title'],
     unique: true,
     trim: true,
-    maxlength: [15, 'Cannot be more than 15 characters'],
+    maxlength: [20, 'Cannot be more than 15 characters'],
   },
   desc: {
     type: String,

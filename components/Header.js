@@ -2,15 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import router from 'next/router'
+import Image from 'next/image'
 
 const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
 `
 
-const Header = ({ backBtn, homeBtn, addTask, updateBtn, whiteText }) => {
+const Header = ({
+  backBtn,
+  focus,
+  addTask,
+  updateBtn,
+  whiteText,
+  logoOpacity,
+}) => {
   return (
     <HeaderWrapper>
       {backBtn ? (
@@ -20,16 +28,21 @@ const Header = ({ backBtn, homeBtn, addTask, updateBtn, whiteText }) => {
         >
           back
         </button>
-      ) : homeBtn ? (
+      ) : focus ? (
         <Link href="/">
-          <button className={whiteText && 'white-text'}>home</button>
+          <button className={whiteText && 'white-text'}>focus</button>
         </Link>
       ) : (
         <Link href="/list">
           <button className={whiteText && 'white-text'}>view all</button>
         </Link>
       )}
-      <div>logo</div>
+      <Image
+        src={logoOpacity ? '/focus-logo-white.svg' : '/focus-logo-black.svg'}
+        className={logoOpacity && 'logo-opacity'}
+        width={171.87}
+        height={44.93}
+      />
       {addTask ? (
         <button
           className={whiteText && 'white-text'}

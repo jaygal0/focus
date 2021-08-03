@@ -3,6 +3,29 @@ import { useRouter } from 'next/router'
 import Card from '../components/Card'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
+import styled from 'styled-components'
+import Link from 'next/link'
+import Quote from '../components/Quote'
+
+const NewTask = styled.h2`
+  max-width: 92.8rem;
+  width: 100%;
+  height: min-content;
+  padding: 4.8rem;
+  align-items: center;
+  border-radius: 0.8rem;
+  border: 0.5px solid ${({ theme }) => theme.color.black};
+  margin-bottom: 1.6rem;
+  color: ${({ theme }) => theme.color.black};
+  display: flex;
+  justify-content: center;
+  font-size: ${({ theme }) => theme.font.meta};
+  font-weight: 300;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`
 
 export default function List({ data }) {
   // To add a class to the body in Nextjs
@@ -28,10 +51,12 @@ export default function List({ data }) {
   return (
     <>
       <Meta />
-      <Header homeBtn />
+      <Header focus />
       <main>
         {data.data.length === 0 ? (
-          <h2>add a new task</h2>
+          <Link href="/new">
+            <NewTask>add a new task</NewTask>
+          </Link>
         ) : (
           <div>
             {data.data.map((item) => {
@@ -49,6 +74,7 @@ export default function List({ data }) {
           </div>
         )}
       </main>
+      <Quote />
       <footer></footer>
     </>
   )

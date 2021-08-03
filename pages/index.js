@@ -9,6 +9,25 @@ import Quote from '../components/Quote'
 const Wrapper = styled.div`
   width: 100%;
 `
+const NewTask = styled.h2`
+  max-width: 92.8rem;
+  width: 100%;
+  height: min-content;
+  padding: 4.8rem;
+  align-items: center;
+  border-radius: 0.8rem;
+  border: 0.5px solid ${({ theme }) => theme.color.white};
+  margin-bottom: 1.6rem;
+  color: ${({ theme }) => theme.color.white};
+  display: flex;
+  justify-content: center;
+  font-size: ${({ theme }) => theme.font.meta};
+  font-weight: 300;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`
 export default function Home({ data }) {
   // To add a class to the body in Nextjs
   useEffect(() => {
@@ -19,10 +38,12 @@ export default function Home({ data }) {
   return (
     <>
       <Meta title="OneTask" desc="this is a test" />
-      <Header whiteText />
+      <Header whiteText logoOpacity />
       <main>
         {data.data.length === 0 ? (
-          <h2>add a new task</h2>
+          <Link href="/new">
+            <NewTask>add a new task</NewTask>
+          </Link>
         ) : (
           <Wrapper>
             {data.data.slice(0, 1).map((item) => {
@@ -39,8 +60,6 @@ export default function Home({ data }) {
             })}
           </Wrapper>
         )}
-
-        <Quote msg="this is a quote" />
       </main>
       <footer></footer>
     </>

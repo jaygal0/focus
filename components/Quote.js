@@ -1,15 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const QuoteMessage = styled.p`
-  color: ${({ theme }) => theme.color.white};
+const Wrapper = styled.div`
+  color: ${({ theme }) => theme.color.black};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 4rem;
-  font-weight: 200;
+`
+const Message = styled.p`
   text-align: center;
+  margin-bottom: 1.6rem;
+`
+const Author = styled.p`
+  text-align: center;
+  font-size: ${({ theme }) => theme.font.meta};
 `
 
-const Quote = ({ msg }) => {
-  return <QuoteMessage>{msg}</QuoteMessage>
+const Quote = () => {
+  return (
+    <Wrapper>
+      <Message>“Focusing is about saying No.”</Message>
+      <Author>Steve Jobs </Author>
+    </Wrapper>
+  )
 }
 
 export default Quote

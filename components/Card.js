@@ -16,6 +16,7 @@ const CardWrapper = styled.div`
   background: black;
   border-radius: 0.8rem;
   border: 0.5px solid ${({ theme }) => theme.color.white};
+  margin-bottom: 1.6rem;
 `
 const ContentWrapper = styled.div`
   display: flex;
@@ -48,6 +49,10 @@ const Meta = styled.p`
   font-size: ${({ theme }) => theme.font.meta};
   font-weight: 300;
   margin-left: 0.8rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &.margin-right {
     margin-right: 1.6rem;
@@ -134,6 +139,7 @@ const Card = ({ id, title, desc, date }) => {
             id="input-hidden"
             type="checkbox"
             checked={checkmark && true}
+            readOnly
           />
           <InputRedesign
             id="input-redesign"
@@ -148,16 +154,23 @@ const Card = ({ id, title, desc, date }) => {
       </ContentWrapper>
       <Time id="time">{`Added ${moment(date).fromNow()}`}</Time>
       <OptionsWrapper id="options">
-        <Image src="/remove-icon.svg" width={16} height={16} />
+        <Image
+          src="/remove-icon.svg"
+          width={16}
+          height={16}
+          onClick={handleDelete}
+        />
         <Meta className="margin-right" onClick={handleDelete}>
           Remove
         </Meta>
-        <Image
-          className="margin-left"
-          src="/edit-icon.svg"
-          width={16}
-          height={16}
-        />
+        <Link href={`/${id}/edit`}>
+          <Image
+            className="margin-left"
+            src="/edit-icon.svg"
+            width={16}
+            height={16}
+          />
+        </Link>
         <Link href={`/${id}/edit`}>
           <Meta>Edit</Meta>
         </Link>
