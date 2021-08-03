@@ -50,8 +50,8 @@ export default function Task({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  // const res = await fetch(`http://localhost:3000/api/todos/${id}`)
-  const res = await fetch(`https://focus-one.vercel.app/api/todos/${id}`)
+  const res = await fetch(`http://localhost:3000/api/todos/${id}`)
+  // const res = await fetch(`https://focus-one.vercel.app/api/todos/${id}`)
   const data = await res.json()
 
   if (!data) {

@@ -99,8 +99,8 @@ const Card = ({ id, title, desc, date }) => {
   const handleDelete = async () => {
     try {
       const deleted = await fetch(
-        `https://focus-one.vercel.app/api/todos/${id}`,
-        // `http://localhost:3000/api/todos/${id}`,
+        // `https://focus-one.vercel.app/api/todos/${id}`,
+        `http://localhost:3000/api/todos/${id}`,
         {
           method: 'DELETE',
         }
@@ -121,8 +121,8 @@ const Card = ({ id, title, desc, date }) => {
     setTimeout(async function () {
       try {
         const deleted = await fetch(
-          `https://focus-one.vercel.app/api/todos/${id}`,
-          // `http://localhost:3000/api/todos/${id}`,
+          // `https://focus-one.vercel.app/api/todos/${id}`,
+          `http://localhost:3000/api/todos/${id}`,
           {
             method: 'DELETE',
           }

@@ -72,8 +72,8 @@ export default function New() {
 
   const createTask = async () => {
     try {
-      // const res = await fetch('http://localhost:3000/api/todos', {
-      const res = await fetch('https://focus-one.vercel.app/api/todos', {
+      const res = await fetch('http://localhost:3000/api/todos', {
+        // const res = await fetch('https://focus-one.vercel.app/api/todos', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
