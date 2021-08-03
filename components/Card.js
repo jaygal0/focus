@@ -164,7 +164,7 @@ const Card = ({ id, title, desc, date }) => {
         <Meta className="margin-right" onClick={handleDelete}>
           Remove
         </Meta>
-        <Link href={`/${id}/edit`}>
+        <Link href={`/${id}/edit`} passHref>
           <Image
             className="margin-left"
             src="/edit-icon.svg"
@@ -172,7 +172,7 @@ const Card = ({ id, title, desc, date }) => {
             height={16}
           />
         </Link>
-        <Link href={`/${id}/edit`}>
+        <Link href={`/${id}/edit`} passHref>
           <Meta>Edit</Meta>
         </Link>
       </OptionsWrapper>

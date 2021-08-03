@@ -55,7 +55,7 @@ export default function List({ data }) {
       <Header focus />
       <main>
         {data.data.length === 0 ? (
-          <Link href="/new">
+          <Link href="/new" passHref>
             <NewTask>add a new task</NewTask>
           </Link>
         ) : (

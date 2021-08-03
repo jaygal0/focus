@@ -29,11 +29,11 @@ const Header = ({
           back
         </button>
       ) : focus ? (
-        <Link href="/">
+        <Link href="/" passHref>
           <button className={whiteText && 'white-text'}>focus</button>
         </Link>
       ) : (
-        <Link href="/list">
+        <Link href="/list" passHref>
           <button className={whiteText && 'white-text'}>view all</button>
         </Link>
       )}
@@ -60,7 +60,7 @@ const Header = ({
           update
         </button>
       ) : (
-        <Link href="/new">
+        <Link href="/new" passHref>
           <button className={whiteText && 'white-text'}>new task</button>
         </Link>
       )}

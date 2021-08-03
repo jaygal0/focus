@@ -28,11 +28,11 @@ export default function Task({ data }) {
       <p>{desc}</p>
       <p>{completed ? `Completed: Yes` : `Complete: No`}</p>
       <p>Posted on {date}</p>
-      <Link href="/">
+      <Link href="/" passHref>
         <button>back</button>
       </Link>
       <button onClick={handleDelete}>delete task</button>
-      <Link href={`/${_id}/edit`}>
+      <Link href={`/${_id}/edit`} passHref>
         <button>edit</button>
       </Link>
 
