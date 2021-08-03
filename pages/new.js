@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Meta from '../components/Meta'
@@ -63,7 +62,6 @@ export default function New() {
 
   useEffect(() => {
     if (isSubmitting) {
-      console.log(Object.keys(errors).length)
       if (Object.keys(errors).length === 0) {
         createTask()
       } else {
@@ -74,7 +72,8 @@ export default function New() {
 
   const createTask = async () => {
     try {
-      const res = await fetch(`${process.env.URL}/api/todos`, {
+      // const res = await fetch('http://localhost:3000/api/todos', {
+      const res = await fetch('https://focus-one.vercel.app/api/todos', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
