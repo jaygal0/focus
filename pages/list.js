@@ -6,6 +6,7 @@ import Meta from '../components/Meta'
 import styled from 'styled-components'
 import Link from 'next/link'
 import Quote from '../components/Quote'
+import url from '../utils/url'
 
 const NewTask = styled.h2`
   max-width: 92.8rem;
@@ -28,11 +29,7 @@ const NewTask = styled.h2`
 `
 
 export default function List({ data }) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
   // To add a class to the body in Nextjs
-
   useEffect(() => {
     document.querySelector('body').classList.add('white')
     document.querySelector('body').classList.remove('black')
@@ -42,7 +39,7 @@ export default function List({ data }) {
     const task = e.target.id
 
     try {
-      const deleted = await fetch(`${URL}/api/todos/${task}`, {
+      const deleted = await fetch(`${url}/api/todos/${task}`, {
         method: 'DELETE',
       })
 
@@ -85,11 +82,7 @@ export default function List({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
-
-  const res = await fetch(`${URL}/api/todos`)
+  const res = await fetch(`${url}/api/todos`)
   const data = await res.json()
 
   if (!data) {

@@ -3,18 +3,15 @@ import { useRouter } from 'next/router'
 import Meta from '../../components/Meta'
 import Header from '../../components/Header'
 import Card from '../../components/Card'
+import url from '../../utils/url'
 
 export default function Task({ data }) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
-
   const router = useRouter()
   const handleDelete = async () => {
     const taskId = router.query.id
 
     try {
-      const deleted = await fetch(`${URL}/api/todos/${taskId}`, {
+      const deleted = await fetch(`${process.env.URL}/api/todos/${taskId}`, {
         method: 'DELETE',
       })
 
@@ -50,11 +47,7 @@ export default function Task({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
-
-  const res = await fetch(`${URL}/api/todos/${id}`)
+  const res = await fetch(`${url}/api/todos/${id}`)
   const data = await res.json()
 
   if (!data) {

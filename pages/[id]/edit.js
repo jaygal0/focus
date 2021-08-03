@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Meta from '../../components/Meta'
 import Header from '../../components/Header'
 import styled from 'styled-components'
+import url from '../../utils/url'
 
 const FormWrapper = styled.form`
   max-width: 92.8rem;
@@ -51,10 +51,6 @@ const Errors = styled.div`
 `
 
 export default function Edit({ data }) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
-
   useEffect(() => {
     document.querySelector('body').classList.add('white')
     document.querySelector('body').classList.remove('black')
@@ -78,7 +74,7 @@ export default function Edit({ data }) {
 
   const updateNote = async () => {
     try {
-      const res = await fetch(`${URL}/api/todos/${_id}`, {
+      const res = await fetch(`${url}/api/todos/${_id}`, {
         method: 'PUT',
         headers: {
           Accept: 'application/json',
@@ -160,11 +156,7 @@ export default function Edit({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
-
-  const res = await fetch(`${URL}/api/todos/${id}`)
+  const res = await fetch(`${url}/api/todos/${id}`)
   const data = await res.json()
 
   return {

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Card from '../components/Card'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
+import url from '../utils/url'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -66,11 +67,7 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
-
-  const res = await fetch(`${URL}/api/todos`)
+  const res = await fetch(`${url}/api/todos`)
   const data = await res.json()
 
   if (!data) {

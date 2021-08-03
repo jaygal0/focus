@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Meta from '../components/Meta'
 import Header from '../components/Header'
 import styled from 'styled-components'
+import url from '../utils/url'
 
 const FormWrapper = styled.form`
   max-width: 92.8rem;
@@ -71,12 +72,8 @@ export default function New() {
   }, [errors])
 
   const createTask = async () => {
-    // To switch URL's quickly
-    // const URL = 'http://localhost:3000'
-    const URL = 'https://focus-one.vercel.app'
-
     try {
-      const res = await fetch(`${URL}/api/todos`, {
+      const res = await fetch(`${url}/api/todos`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

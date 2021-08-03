@@ -4,6 +4,7 @@ import moment from 'moment'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
+import url from '../utils/url'
 
 const CardWrapper = styled.div`
   max-width: 92.8rem;
@@ -94,15 +95,11 @@ const InputRedesign = styled.div`
 `
 
 const Card = ({ id, title, desc, date }) => {
-  // To switch URL's quickly
-  const URL = 'http://localhost:3000'
-  // const URL = 'https://focus-one.vercel.app'
-
   const [checkmark, setCheckmark] = useState(false)
   const router = useRouter()
   const handleDelete = async () => {
     try {
-      const deleted = await fetch(`${URL}/api/todos/${id}`, {
+      const deleted = await fetch(`${url}/api/todos/${id}`, {
         method: 'DELETE',
       })
 
@@ -120,7 +117,7 @@ const Card = ({ id, title, desc, date }) => {
     setCheckmark(!checkmark)
     setTimeout(async function () {
       try {
-        const deleted = await fetch(`${URL}/api/todos/${id}`, {
+        const deleted = await fetch(`${url}/api/todos/${id}`, {
           method: 'DELETE',
         })
 
