@@ -10,7 +10,7 @@ export default function Task({ data }) {
     const taskId = router.query.id
 
     try {
-      const deleted = await fetch(`http://localhost:3000/api/todos/${taskId}`, {
+      const deleted = await fetch(`${process.env.URL}/api/todos/${taskId}`, {
         method: 'DELETE',
       })
 
@@ -46,7 +46,7 @@ export default function Task({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/todos/${id}`)
+  const res = await fetch(`${process.env.URL}/api/todos/${id}`)
   const data = await res.json()
 
   if (!data) {

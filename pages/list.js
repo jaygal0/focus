@@ -38,7 +38,7 @@ export default function List({ data }) {
     const task = e.target.id
 
     try {
-      const deleted = await fetch(`http://localhost:3000/api/todos/${task}`, {
+      const deleted = await fetch(`${process.env.URL}/api/todos/${task}`, {
         method: 'DELETE',
       })
 
@@ -81,7 +81,7 @@ export default function List({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/todos`)
+  const res = await fetch(`${process.env.URL}/api/todos`)
   const data = await res.json()
 
   if (!data) {

@@ -74,7 +74,7 @@ export default function Edit({ data }) {
 
   const updateNote = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/todos/${_id}`, {
+      const res = await fetch(`${process.env.URL}/api/todos/${_id}`, {
         method: 'PUT',
         headers: {
           Accept: 'application/json',
@@ -156,7 +156,7 @@ export default function Edit({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/todos/${id}`)
+  const res = await fetch(`${process.env.URL}/api/todos/${id}`)
   const data = await res.json()
 
   return {

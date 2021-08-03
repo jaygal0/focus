@@ -98,7 +98,7 @@ const Card = ({ id, title, desc, date }) => {
   const router = useRouter()
   const handleDelete = async () => {
     try {
-      const deleted = await fetch(`http://localhost:3000/api/todos/${id}`, {
+      const deleted = await fetch(`${process.env.URL}/api/todos/${id}`, {
         method: 'DELETE',
       })
 
@@ -116,7 +116,7 @@ const Card = ({ id, title, desc, date }) => {
     setCheckmark(!checkmark)
     setTimeout(async function () {
       try {
-        const deleted = await fetch(`http://localhost:3000/api/todos/${id}`, {
+        const deleted = await fetch(`${process.env.URL}/api/todos/${id}`, {
           method: 'DELETE',
         })
 

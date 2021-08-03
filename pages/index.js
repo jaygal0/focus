@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Card from '../components/Card'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
-import Quote from '../components/Quote'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -67,7 +66,7 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/todos`)
+  const res = await fetch(`${process.env.URL}/api/todos`)
   const data = await res.json()
 
   if (!data) {
