@@ -11,7 +11,7 @@ export default function Task({ data }) {
     const taskId = router.query.id
 
     try {
-      const deleted = await fetch(`${process.env.URL}/api/todos/${taskId}`, {
+      const deleted = await fetch(`${url}/api/todos/${taskId}`, {
         method: 'DELETE',
       })
 
