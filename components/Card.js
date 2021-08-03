@@ -94,17 +94,17 @@ const InputRedesign = styled.div`
 `
 
 const Card = ({ id, title, desc, date }) => {
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
   const [checkmark, setCheckmark] = useState(false)
   const router = useRouter()
   const handleDelete = async () => {
     try {
-      const deleted = await fetch(
-        // `https://focus-one.vercel.app/api/todos/${id}`,
-        `http://localhost:3000/api/todos/${id}`,
-        {
-          method: 'DELETE',
-        }
-      )
+      const deleted = await fetch(`${URL}/api/todos/${id}`, {
+        method: 'DELETE',
+      })
 
       if (router.route === '/') {
         router.push('/')
@@ -120,13 +120,9 @@ const Card = ({ id, title, desc, date }) => {
     setCheckmark(!checkmark)
     setTimeout(async function () {
       try {
-        const deleted = await fetch(
-          // `https://focus-one.vercel.app/api/todos/${id}`,
-          `http://localhost:3000/api/todos/${id}`,
-          {
-            method: 'DELETE',
-          }
-        )
+        const deleted = await fetch(`${URL}/api/todos/${id}`, {
+          method: 'DELETE',
+        })
 
         if (router.route === '/') {
           router.push('/')

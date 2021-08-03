@@ -5,18 +5,18 @@ import Header from '../../components/Header'
 import Card from '../../components/Card'
 
 export default function Task({ data }) {
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
   const router = useRouter()
   const handleDelete = async () => {
     const taskId = router.query.id
 
     try {
-      const deleted = await fetch(
-        `https://focus-one.vercel.app/api/todos/${taskId}`,
-        `http://localhost:3000/api/todos/${taskId}`,
-        {
-          method: 'DELETE',
-        }
-      )
+      const deleted = await fetch(`${URL}/api/todos/${taskId}`, {
+        method: 'DELETE',
+      })
 
       router.push('/')
     } catch (error) {
@@ -50,8 +50,11 @@ export default function Task({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/todos/${id}`)
-  // const res = await fetch(`https://focus-one.vercel.app/api/todos/${id}`)
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
+  const res = await fetch(`${URL}/api/todos/${id}`)
   const data = await res.json()
 
   if (!data) {

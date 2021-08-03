@@ -66,8 +66,11 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch('http://localhost:3000/api/todos')
-  // const res = await fetch('https://focus-one.vercel.app/api/todos')
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
+  const res = await fetch(`${URL}/api/todos`)
   const data = await res.json()
 
   if (!data) {

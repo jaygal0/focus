@@ -51,6 +51,10 @@ const Errors = styled.div`
 `
 
 export default function Edit({ data }) {
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
   useEffect(() => {
     document.querySelector('body').classList.add('white')
     document.querySelector('body').classList.remove('black')
@@ -74,8 +78,7 @@ export default function Edit({ data }) {
 
   const updateNote = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/todos/${_id}`, {
-        // const res = await fetch(`https://focus-one.vercel.app/api/todos/${_id}`, {
+      const res = await fetch(`${URL}/api/todos/${_id}`, {
         method: 'PUT',
         headers: {
           Accept: 'application/json',
@@ -157,8 +160,11 @@ export default function Edit({ data }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  // const res = await fetch(`https://focus-one.vercel.app/api/todos/${id}`)
-  const res = await fetch(`http://localhost:3000/api/todos/${id}`)
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
+  const res = await fetch(`${URL}/api/todos/${id}`)
   const data = await res.json()
 
   return {

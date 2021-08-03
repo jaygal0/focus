@@ -28,7 +28,11 @@ const NewTask = styled.h2`
 `
 
 export default function List({ data }) {
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
   // To add a class to the body in Nextjs
+
   useEffect(() => {
     document.querySelector('body').classList.add('white')
     document.querySelector('body').classList.remove('black')
@@ -38,7 +42,7 @@ export default function List({ data }) {
     const task = e.target.id
 
     try {
-      const deleted = await fetch(`${process.env.URL}/api/todos/${task}`, {
+      const deleted = await fetch(`${URL}/api/todos/${task}`, {
         method: 'DELETE',
       })
 
@@ -81,8 +85,11 @@ export default function List({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch('http://localhost:3000/api/todos')
-  // const res = await fetch('https://focus-one.vercel.app/api/todos')
+  // To switch URL's quickly
+  // const URL = 'http://localhost:3000'
+  const URL = 'https://focus-one.vercel.app'
+
+  const res = await fetch(`${URL}/api/todos`)
   const data = await res.json()
 
   if (!data) {

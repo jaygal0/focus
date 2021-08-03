@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
+  margin: 6.4rem 0;
 `
 const Message = styled.p`
   text-align: center;

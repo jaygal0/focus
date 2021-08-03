@@ -71,9 +71,12 @@ export default function New() {
   }, [errors])
 
   const createTask = async () => {
+    // To switch URL's quickly
+    // const URL = 'http://localhost:3000'
+    const URL = 'https://focus-one.vercel.app'
+
     try {
-      const res = await fetch('http://localhost:3000/api/todos', {
-        // const res = await fetch('https://focus-one.vercel.app/api/todos', {
+      const res = await fetch(`${URL}/api/todos`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
