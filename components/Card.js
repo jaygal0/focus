@@ -95,8 +95,8 @@ const InputRedesign = styled.div`
 
 const Card = ({ id, title, desc, date }) => {
   // To switch URL's quickly
-  // const URL = 'http://localhost:3000'
-  const URL = 'https://focus-one.vercel.app'
+  const URL = 'http://localhost:3000'
+  // const URL = 'https://focus-one.vercel.app'
 
   const [checkmark, setCheckmark] = useState(false)
   const router = useRouter()
